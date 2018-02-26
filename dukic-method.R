@@ -242,15 +242,15 @@ fAUC <- function(fun, a, b, tol = 1e-8, method = "simpson", verbose = TRUE)
   # numerical integral of fun from a to b, assume a < b 
   # with tolerance tol
   n <- 4
-  h <- (b-a)/4
-  x <- seq(a, b, by=h)
+  h <- (b - a)/4
+  x <- seq(a, b, by = h)
   y <- fun(x)
   yIntegrate_internal <- function(y, h, n, method) {
     if (method == "simpson") {
-      s <- y[1] + y[n+1] + 4*sum(y[seq(2,n,by=2)]) + 2 *sum(y[seq(3,n-1, by=2)])
+      s <- y[1] + y[n + 1] + 4*sum(y[seq(2, n, by = 2)]) + 2*sum(y[seq(3, n - 1, by = 2)])
       s <- s*h/3
     } else if (method == "trapezoidal") {
-      s <- h * (y[1]/2 + sum(y[2:n]) + y[n+1]/2)
+      s <- h * (y[1]/2 + sum(y[2:n]) + y[n + 1]/2)
     } else {
     }		
     return(s)
@@ -262,10 +262,10 @@ fAUC <- function(fun, a, b, tol = 1e-8, method = "simpson", verbose = TRUE)
     s.old <- s
     n <- 2*n
     h <- h/2
-    y[seq(1, n+1, by=2)] <- y ##reuse old fun values
-    y[seq(2,n, by=2)] <- sapply(seq(a+h, b-h, by=2*h), fun)
+    y[seq(1, n + 1, by = 2)] <- y ##reuse old fun values
+    y[seq(2, n, by = 2)] <- sapply(seq(a + h, b - h, by = 2*h), fun)
     s <- yIntegrate_internal(y, h, n, method)
-    s.diff <- abs(s-s.old)
+    s.diff <- abs(s - s.old)
   }
   if (verbose) {
     cat("partition size", n, "\n")
