@@ -59,9 +59,10 @@ solution <- optim(par = c(0.75, 200, 5),
                   hessian = TRUE)
 
 if(solution$convergence == 0) {
-  print(paste("alpha =", round(solution$par[1], 2)), quote = FALSE)
-  print(paste("beta =", round(solution$par[2], 2)), quote = FALSE)
-  print(paste("intercept =", round(solution$par[3], 2)), quote = FALSE)
+  print(paste("alpha =", round(solution$par[1], 2)), quote = F)
+  print(paste("beta =", round(solution$par[2], 2)), quote = F)
+  print(paste("intercept =", round(solution$par[3], 2)), quote = F)
+  print(paste("AUC =", round(fAUC(function(x) {fSpectosens(1 - x, intercept = solution$par[3], alpha = solution$par[1], beta = solution$par[2])}, a = 0, b = 1, verbose = F), 3)), quote = F)
 }
 
 x <- seq(1 - max(data$spec), 1 - min(data$spec), 0.001)
