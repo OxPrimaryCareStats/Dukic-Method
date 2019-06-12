@@ -118,6 +118,7 @@ fLoglikelihoodfixedalpha <- function(beta)
 fDukic <- function(data)
   # Make the data ready for the loglikelihood and subroutine
   {
+  data <- data[order(data$study, data$cut.off), ]
   data$study <- factor(data$study)				# Strip out unused levels
   data$cut.off <- as.double(as.character(data$cut.off))	# Convert from factor to numeric
   vsStudynames <- levels(data$study)			# Identify studies in this data 
@@ -127,7 +128,7 @@ fDukic <- function(data)
   vD <- c()
   vLower <- c()
   vUpper <- c()
-  for (sStudy in vsStudynames)	{
+  for (sStudy in vsStudynames){
     iStudy <- iStudy + 1				# Give each study an id number
     thisdata <- data[which(data$study == sStudy),]	# Extract data for this study
     iRows <- length(thisdata$n)			# Number of rows in this study (== number of thresholds)
