@@ -15,8 +15,8 @@ rm(list = ls())
 library(MASS)
 
 ### Set Directory ###
-data.dir <- "~/Data/Kathy" # Where the data is.
-dukic.dir <- "~/Documents/Git/Dukic-Method" # Where the dukic-method.R script is.
+data.dir <- "~/Documents/NDPCHS/BNP POC Testing/Data" # Where the data is.
+dukic.dir <- "~/Git/Dukic-Method" # Where the dukic-method.R script is.
 output.dir <- "~/Desktop" # Where you want your graphs output.
 
 #####################################
